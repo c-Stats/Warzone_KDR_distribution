@@ -1,2 +1,3 @@
-# Warzone_KDR_distribution
-high KDR players lobbies VS casual players lobbies
+# Warzone KDR distribution
+
+Comparison of profesionnal streamers' lobbies vs casual players'.
