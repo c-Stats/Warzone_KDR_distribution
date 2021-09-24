@@ -47,6 +47,8 @@ for(f in frames){
 }
 
 frames <- dplyr::bind_rows(frames)
+
+#Remove hackers
 frames <- frames[KDR <= 7.5] 
 
 frames <- frames[(grepl("BR", Mode) | grepl("Resurgence", Mode)) & !(grepl("Buyback", Mode))]
@@ -113,6 +115,8 @@ names(sample_desc_stats) <- c("length", "mean", "median", "sd")
 
 
 #T-test
+#Manually change the names within the query
+
 t.test(adjusted_kdr[Player == "FrankFredj%231458"]$KDR,
 			adjusted_kdr[Player == "Huskerrs"]$KDR)
 
