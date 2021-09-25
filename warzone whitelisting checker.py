@@ -12,9 +12,10 @@ import urllib
 import pandas as pd
 import numpy as np
 
+#Use your own path
 webdriver_path = "D:/MLB/MLB_Modeling/chromedriver"
 
-
+#Use your own player url
 urls = ["https://cod.tracker.gg/warzone/profile/battlenet/FrankFredj%231458/matches",
 		"https://cod.tracker.gg/warzone/profile/atvi/Huskerrs/overview",
 		"https://cod.tracker.gg/warzone/profile/xbl/SwaggXBL/overview"]
@@ -22,9 +23,12 @@ urls = ["https://cod.tracker.gg/warzone/profile/battlenet/FrankFredj%231458/matc
 driver = webdriver.Chrome(webdriver_path)
 
 #Anti-robot captcha
-#Manually log in
+# ----- Manually log in on the website after runnning this line -----
 driver.get(urls[0])
+# -------------------------------------------------------------------
 
+
+#Default sample size is 250. If you want to sample more/less, then tweak the function below.
 def scrape_match_links(driver, url, sample_size = 250):
 
 	driver.get(url)
@@ -137,6 +141,7 @@ def extract_stats_vectorized(driver, urls):
 matches = [scrape_match_links(driver, url) for url in urls]
 kdrs = [extract_stats_vectorized(driver, match_urls) for match_urls in matches]
 
+#These names are used to name the files that will be saved. They should correspond to the variable "urls" declared at the top of the file.
 names = ["FrankFredj%231458", "Huskerrs", "SwaggXBL"]
 for frame, name in zip(kdrs, names):
 	frame.to_csv("D:/CoD_data/" + name + ".csv")
